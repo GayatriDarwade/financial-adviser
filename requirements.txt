@@ -3,3 +3,4 @@ pandas==2.2.3
 plotly==6.2.0
 yfinance==0.2.65
 agno==1.7.6
+google-genai
