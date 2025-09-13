@@ -23,7 +23,7 @@ st.markdown("""
 <style>
     .main-header {
         font-size: 3rem;
-        color: #1f77b4;
+        color: white;
         text-align: center;
         margin-bottom: 2rem;
     }
@@ -342,16 +342,15 @@ def main():
                         st.info("💡 Try reinitializing the agent or check your query.")
 
     # Analysis History
-    if st.session_state.analysis_history:
-        st.header("📚 Analysis History")
-        
-        with st.expander("View Previous Analyses"):
-            for i, analysis in enumerate(reversed(st.session_state.analysis_history[-5:])):  # Last 5
-                st.markdown(f"**{analysis['timestamp']}** - {', '.join(analysis['stocks'])}")
-                st.markdown(f"*Duration: {analysis['duration']}*")
-                with st.expander(f"View Analysis {len(st.session_state.analysis_history) - i}"):
-                    st.markdown(analysis['response'])
-                st.divider()
+if st.session_state.analysis_history:
+    st.header("📚 Analysis History")
+
+    for i, analysis in enumerate(reversed(st.session_state.analysis_history[-5:])):  # Last 5
+        with st.expander(f"📊 {analysis['timestamp']} - {', '.join(analysis['stocks'])}"):
+            st.markdown(f"*Duration: {analysis['duration']}*")
+            st.markdown(analysis['response'])
+        st.divider()
+
 
     # Footer
     st.markdown("---")
